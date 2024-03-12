@@ -10,6 +10,9 @@ import csv
 
 # 0) Setup
 
+# signals the script has started running
+print("Connecting to Uniprot...")
+
 # creates the local directory where files will be downloaded
 os.makedirs("resources", exist_ok=True)
 
@@ -96,3 +99,5 @@ with open('resources/fGO.tsv', 'w', newline='') as file:
 		print(newEntry)
 		writer.writerow(newEntry)
 
+# signals the script has finished running
+print("Finished downloading and processing the GO terms table!")

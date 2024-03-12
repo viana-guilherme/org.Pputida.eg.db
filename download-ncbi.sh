@@ -3,6 +3,9 @@
 # This script automatically downloads the necessary file to create the GO term
 # package from the NCBI ftp database and processes it for the subsequent steps in R
 
+# signals the script has started running
+echo "Connecting to NCBI..."
+
 # creating the output directory
 mkdir -p resources
 
@@ -26,4 +29,4 @@ awk -F'\t' '$1 ~ "CDS" {print $17 "\t" $6}' ${featuresFile} > fChr.tsv # chromos
 mv fChr.tsv fSym.tsv "${featuresFile}" "${featuresFile}.gz" resources
 
 # signals the script has finished running
-echo "finished downloading and processing the feature table!"
+echo "Finished downloading and processing the feature table!"

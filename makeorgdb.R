@@ -8,7 +8,7 @@ colnames(fSym) <- c("GID","SYMBOL","GENENAME")
 
 fChr <- read.delim("resources/fChr.tsv", sep = "\t", header = FALSE)
 colnames(fChr) <- c("GID","CHROMOSOME")
-fChr$CHROMOSOME <- 1 # we only have one chromossome
+fChr$CHROMOSOME <- 1 # we only have one chromossome for putida so we can hardcode it
 
 fGO <- read.delim("resources/fGO.tsv", sep = "\t", header = TRUE)
 
@@ -24,6 +24,3 @@ AnnotationForge::makeOrgPackage(gene_info = fSym,
                genus = "Pseudomonas",
                species = "putida",
                goTable = "go")
-
-## then you can call install.packages based on the return value
-#install.packages("./org.Pputida.eg.db/", repos = NULL)
