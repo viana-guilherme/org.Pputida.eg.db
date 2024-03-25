@@ -16,7 +16,7 @@ fGO <- read.delim("resources/fGO.tsv", sep = "\t", header = TRUE)
 AnnotationForge::makeOrgPackage(gene_info = fSym,
                chromosome = fChr,
                go = fGO,
-               version = "0.1",
+               version = "0.0.2",
                maintainer = "Guilherme Viana <viana.guilherme@proton.me>",
                author = "Guilherme Viana <viana.guilherme@proton.me>",
                outputDir = ".",
