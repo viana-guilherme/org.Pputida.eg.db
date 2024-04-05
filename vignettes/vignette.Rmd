@@ -1,7 +1,7 @@
 ---
 title: "Creating a GO terms annotation package for _Pseudomonas putida_"
 author: "Guilherme Viana de Siqueira"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: "04 April, 2024"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Creating a GO terms annotation package for _Pseudomonas putida_}
