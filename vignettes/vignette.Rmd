@@ -4,7 +4,7 @@ author: "Guilherme Viana de Siqueira"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{GO terms annotation package for _Pseudomonas putida_}
+  %\VignetteIndexEntry{Creating a GO terms annotation package for _Pseudomonas putida_}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
