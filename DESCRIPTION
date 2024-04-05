@@ -16,3 +16,4 @@ organism: Pseudomonas putida
 species: Pseudomonas putida
 biocViews: OrgDb, annotation
 VignetteBuilder: knitr
+BugReports: https://github.com/viana-guilherme/org.Pputida.eg.db/issues
