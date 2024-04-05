@@ -4,3 +4,4 @@ resources/
 .Rhistory
 .RData
 .Ruserdata
+inst/doc

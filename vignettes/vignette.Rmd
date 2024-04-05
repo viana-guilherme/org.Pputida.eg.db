@@ -1,0 +1,62 @@
+---
+title: "Creating a GO terms annotation package for _Pseudomonas putida_"
+author: "Guilherme Viana de Siqueira"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{GO terms annotation package for _Pseudomonas putida_}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+I've been working with _P. putida_ in my doctorate, and I noticed that there wasn't a proper GO term annotation package for this organism in Bioconductor that I could use for the enrichment analyses I had been trying to perform with [clusterProfiler](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html).
+
+After trying some alternatives, I've decided to build one myself following the steps provided in the `AnnotationForge::makeOrgPackage()` [vignette](https://bioconductor.org/packages/release/bioc/vignettes/AnnotationForge/inst/doc/MakingNewOrganismPackages.html). This repository contains all the code necessary to build this package from scratch if needed - or it can also be tweaked for building similar packages for other organisms that have data available in NCBI/Uniprot but no R annotation package available for them.
+
+## Description
+
+There are three parts to the workflow contained in this repository:
+
+- Obtaining the table with genomic features for P. putida found in NCBI's FTP server. This is done by the `inst/scripts/download-ncbi.sh` script
+
+- Obtaining all GO term annotations for each putida gene (where they are present). This is done by the `inst/scripts/download-uniprot.py` script.
+
+- Finally, assembling all of the previous information and generating the annotation package with `AnnotationForge::makeOrgPackage()`. This is done by the` inst/scripts/makeorgdb.R` script.
+
+Working with different programming languages and so many libraries means that this workflow is bound to break at some point. Please, feel free to reach out should you run in any issue!
+
+For convenience, I have included a `run-workflow.R` script (that also lives in the `inst/scripts` directory) that automatically runs every script in this repository and auto-installs the annotation package. This workflow is partly reproduced below.
+
+```{r eval = FALSE}
+# Run the bash script that downloads/parses the feature table from NCBI
+system2(command = "./inst/scripts/download-ncbi.sh")
+
+# Runs the python scripts that downloads/parses the proteome XML file from Uniprot
+system2(command = "./inst/scripts/download-uniprot.py")
+
+# Finally, runs the R script that makes the org DB package
+source("./inst/scripts/makeorgdb.R")
+
+# Installs the newly created package in your machine
+install.packages("./org.Pputida.eg.db/", repos = NULL)
+
+```
+
+Please note that, a side effect of using `makeOrgPackage()`,  when running this workflow we are greeted with a warning about newer GO terms being dropped from the final database. I haven't noticed an issue with this so far, but feel free to reach out in case there are any concerns.
+
+## Session Info
+
+```{r}
+sessionInfo()
+```
+
+
